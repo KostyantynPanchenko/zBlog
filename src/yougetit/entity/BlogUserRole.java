@@ -1,7 +1,10 @@
-package yougetit.data;
+/*
+ * Simple web application which utilizes Spring MVC, Spring Security and Hibernate. 
+ */
+package yougetit.entity;
 
 /**
- * User roles
+ * User roles enum.
  * 
  * @author 	Kostyantyn Panchenko
  * @version 1.0

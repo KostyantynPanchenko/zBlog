@@ -1,4 +1,4 @@
-package yougetit.service.implementation;
+package yougetit.dao.impl;
 
 import java.util.List;
 
@@ -8,10 +8,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import yougetit.data.BlogUser;
-import yougetit.data.Comment;
-import yougetit.service.generic.AbstractDAO;
-import yougetit.service.generic.CommentDataAccessService;
+import yougetit.dao.CommentDAO;
+import yougetit.entity.BlogUser;
+import yougetit.entity.Comment;
 
 /**
  * DAO for Comment class entities.
@@ -22,9 +21,9 @@ import yougetit.service.generic.CommentDataAccessService;
 @Repository
 @Transactional
 @Component(value = "commentService")
-public class CommentDAO extends AbstractDAO<Comment, Integer> implements CommentDataAccessService {
+public class CommentDAOimpl extends AbstractDAO<Comment, Integer> implements CommentDAO {
 
-	public CommentDAO() {
+	public CommentDAOimpl() {
 		super(Comment.class);
 	}
 

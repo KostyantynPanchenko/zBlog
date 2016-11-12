@@ -1,9 +1,9 @@
-package yougetit.service.validation;
+package yougetit.validator;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import yougetit.data.UserDTO;
+import yougetit.entity.UserDTO;
 /**
  * Passwords validator class. Takes UserDTO instance and verify if passwords
  * entered during registration process match.

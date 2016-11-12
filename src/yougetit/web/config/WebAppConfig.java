@@ -1,3 +1,6 @@
+/*
+ * Simple web application which utilizes Spring MVC, Spring Security and Hibernate. 
+ */
 package yougetit.web.config;
 
 import java.util.Locale;
@@ -38,12 +41,19 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 	private String prefix = "/WEB-INF/views/";
 	private String suffix = ".jsp";	
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**")
 				.addResourceLocations("/WEB-INF/resources/");
 	}
 	
+	/**
+	 * Configures ViewRosolver.
+	 * @return configured ViewResolver instance. 
+	 */
 	@Bean
 	public InternalResourceViewResolver viewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
@@ -54,12 +64,19 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		return resolver;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/login").setViewName("login");
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
 	
+	/**
+	 * Configures MessageSource.
+	 * @return configured MEsageSource instance.
+	 */
 	@Bean
 	public MessageSource messageSource() {
 	    ReloadableResourceBundleMessageSource messageSource = 
@@ -69,6 +86,10 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 	    return messageSource;
 	}
 	
+	/**
+	 * Configures LocaleResolver.
+	 * @return configured LocaleResolver instance.
+	 */
 	@Bean
     public LocaleResolver localeResolver() {
         CookieLocaleResolver resolver = new CookieLocaleResolver();
@@ -78,6 +99,10 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
         return resolver;
     }
 	
+	/**
+	 * Configures LocaleChangeInterceptor.
+	 * @return configures LocaleChangeInterceptor.
+	 */
 	@Bean
 	public LocaleChangeInterceptor localeChangeInterceptor() {
 		LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();		
@@ -85,11 +110,18 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		return interceptor;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(localeChangeInterceptor());
 	}
 	
+	/**
+	 * Configures Validator.
+	 * @return configured Validator instance.
+	 */
 	@Bean
 	public Validator validator() {
 	    LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();

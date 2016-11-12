@@ -1,3 +1,6 @@
+/*
+ * Simple web application which utilizes Spring MVC, Spring Security and Hibernate. 
+ */
 package yougetit.web.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +15,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-import yougetit.service.implementation.UserDetailsServiceImpl;
+import yougetit.dao.impl.UserDetailsServiceImpl;
 
 /**
- * Setting permissions to access certain URLs with defined user roles.
+ * Security configuration class. Sets permissions to access certain URLs with defined user roles.
  * 
  * @author 	Kostyantyn Panchenko
  * @version 1.1
@@ -30,9 +33,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	UserDetailsService userDetailsService;
 	
 	/**
-	 * Ensures that any request to our application requires the user to be 
-	 * authenticated. Allows users to authenticate with form based login.
-	 */
+     * {@inheritDoc}}
+     */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
@@ -54,6 +56,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.permitAll();						
 	}
 	
+	/**
+	 * Configures AuthenticationMAnager to use UserDetailsService implementations and sets password
+	 * encoder.
+	 * @param auth AuthenticationManagerBuilder instance.
+	 * @throws Exception
+	 */
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {    	
 		auth
@@ -61,18 +69,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         	.passwordEncoder(getShaPasswordEncoder());
     }
 
+    /**
+     * Configures SHA password encoder.
+     * @return configured ShaPasswordEncoder instance.
+     */
     @Bean
 	public ShaPasswordEncoder getShaPasswordEncoder() {
 		 return new ShaPasswordEncoder();
 	}
-    
 
-//    for testing
-//	@Autowired
-//	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//		auth
-//			.inMemoryAuthentication()
-//				.withUser("user").password("password").roles("USER").and()
-//				.withUser("admin").password("admin").roles("USER", "ADMIN");		
-//	}
 }

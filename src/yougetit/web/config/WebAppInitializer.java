@@ -1,3 +1,6 @@
+/*
+ * Simple web application which utilizes Spring MVC, Spring Security and Hibernate. 
+ */
 package yougetit.web.config;
 
 import org.springframework.core.annotation.Order;
@@ -20,6 +23,9 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 @Order(1)
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
+    /**
+     * {@inheritDoc}}
+     */
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
 		return new Class<?>[] { 
@@ -28,11 +34,17 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 			PersistenceConfig.class };
 	}
 
+	/**
+     * {@inheritDoc}}
+     */
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
 		return new Class<?>[] { WebAppConfig.class };
 	}
 
+	/**
+     * {@inheritDoc}}
+     */
 	@Override
 	protected String[] getServletMappings() {
 		return new String[] { "/" };

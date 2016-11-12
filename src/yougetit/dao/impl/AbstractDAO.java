@@ -1,4 +1,4 @@
-package yougetit.service.generic;
+package yougetit.dao.impl;
 
 import java.io.Serializable;
 import java.util.List;
@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import yougetit.dao.GenericDAO;
 
 /**
  * Abstract class providing default implementations for data manipulation methods.
@@ -56,6 +58,10 @@ public abstract class AbstractDAO<T, ID extends Serializable> implements Generic
 		return criteria.list();
 	}
 	
+	/**
+	 * Counts number of records.
+	 * @return number of records
+	 */
 	public int getCount() {		
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(entityClass);
 		criteria.setProjection(Projections.rowCount());

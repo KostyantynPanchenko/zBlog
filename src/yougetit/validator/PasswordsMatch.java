@@ -1,4 +1,7 @@
-package yougetit.service.validation;
+/*
+ * Simple web application which utilizes Spring MVC, Spring Security and Hibernate. 
+ */
+package yougetit.validator;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

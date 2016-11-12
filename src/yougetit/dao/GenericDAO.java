@@ -1,4 +1,4 @@
-package yougetit.service.generic;
+package yougetit.dao;
 
 import java.util.List;
 

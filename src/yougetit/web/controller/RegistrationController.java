@@ -14,17 +14,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import yougetit.data.BlogUser;
-import yougetit.data.UserDTO;
+import yougetit.dao.UserDAO;
+import yougetit.entity.BlogUser;
+import yougetit.entity.UserDTO;
 import yougetit.exceptions.EmailExistException;
 import yougetit.exceptions.UserExistsException;
-import yougetit.service.generic.UserDataAccessService;
 
 @Controller
 public class RegistrationController {
 
 	@Autowired
-	private UserDataAccessService userService;
+	private UserDAO userService;
 	
 	/**
 	 * Processing access to registration page 

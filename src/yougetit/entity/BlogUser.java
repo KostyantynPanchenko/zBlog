@@ -1,4 +1,7 @@
-package yougetit.data;
+/*
+ * Simple web application which utilizes Spring MVC, Spring Security and Hibernate. 
+ */
+package yougetit.entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +21,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
- * Entity class. Represents blog user
+ * Entity class, represents blog user.
  * 
  * @author 	Kostyantyn Panchenko
  * @version 1.0

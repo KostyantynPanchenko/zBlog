@@ -1,4 +1,4 @@
-package yougetit.service.implementation;
+package yougetit.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,14 +6,12 @@ import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import yougetit.data.BlogUser;
-import yougetit.data.Post;
-import yougetit.service.generic.AbstractDAO;
-import yougetit.service.generic.UserDataAccessService;
+import yougetit.dao.UserDAO;
+import yougetit.entity.BlogUser;
+import yougetit.entity.Post;
 
 /**
  * UserDataAccessService default implementation.
@@ -22,19 +20,18 @@ import yougetit.service.generic.UserDataAccessService;
  * @version 1.0
  * @since 02.008.2016
  */
-@Repository
+@Repository(value = "userService")
 @Transactional
-@Component(value = "userService")
-public class UserDAO extends AbstractDAO<BlogUser, Integer> implements UserDataAccessService {
+public class UserDAOimpl extends AbstractDAO<BlogUser, Integer> implements UserDAO {
 	
 	@Autowired
 	@Qualifier("sessionFactory")
 	private SessionFactory sf;
 	
-	public UserDAO() {
+	public UserDAOimpl() {
 		super(BlogUser.class);
 	}
-		
+	
 	@SuppressWarnings("unchecked")
 	public BlogUser getUser(String login) {
 		List<BlogUser> users = new ArrayList<BlogUser>();

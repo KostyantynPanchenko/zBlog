@@ -1,9 +1,12 @@
-package yougetit.data;
+/*
+ * Simple web application which utilizes Spring MVC, Spring Security and Hibernate. 
+ */
+package yougetit.entity;
 
 import java.util.List;
 
 /**
- * Page class represents single page to be dispayed
+ * Page class represents single page to be displayed.
  * @author Kostyantyn Panchneko
  * @version 1.0
  * @since	07.08.2016

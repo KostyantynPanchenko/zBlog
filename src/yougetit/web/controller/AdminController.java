@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import yougetit.data.BlogUser;
-import yougetit.data.Comment;
-import yougetit.data.Post;
-import yougetit.service.generic.CommentDataAccessService;
-import yougetit.service.generic.PostDataAccessService;
-import yougetit.service.generic.UserDataAccessService;
+import yougetit.dao.CommentDAO;
+import yougetit.dao.PostDAO;
+import yougetit.dao.UserDAO;
+import yougetit.entity.BlogUser;
+import yougetit.entity.Comment;
+import yougetit.entity.Post;
 
 /**
  * This class handles requests addressed to administration page.
@@ -28,13 +28,13 @@ import yougetit.service.generic.UserDataAccessService;
 public class AdminController {
 
 	@Autowired
-	private UserDataAccessService userService;
+	private UserDAO userService;
 	
 	@Autowired
-	private PostDataAccessService postingService;
+	private PostDAO postingService;
 	
 	@Autowired
-	private CommentDataAccessService commentService;
+	private CommentDAO commentService;
 	
 	@GetMapping(value = "/admin")
 	public ModelAndView adminPageGet() {

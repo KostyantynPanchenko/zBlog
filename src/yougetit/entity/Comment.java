@@ -1,4 +1,7 @@
-package yougetit.data;
+/*
+ * Simple web application which utilizes Spring MVC, Spring Security and Hibernate. 
+ */
+package yougetit.entity;
 
 import java.util.Date;
 
@@ -15,7 +18,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 /**
- * Entity class. Represents blog comment instance
+ * Entity class, represents blog comment instance.
  * 
  * @author 	Kostyantyn Panchenko
  * @version 1.0
@@ -33,12 +36,10 @@ public class Comment {
 	@Column(name = "content", length = 400)
 	private String content;
 
-	//TODO consider replacing with int postId
 	@ManyToOne		// defaults to FetchType.EAGER
 	@JoinColumn(name = "post_id")
 	private Post post;
 
-	//TODO consider replacing with String author
 	@ManyToOne		// defaults to FetchType.EAGER
 	@JoinColumn(name = "author_id", nullable = false)
 	private BlogUser author; // unidirectional mapping

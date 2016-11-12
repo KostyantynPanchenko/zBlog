@@ -1,4 +1,4 @@
-package yougetit.service.implementation;
+package yougetit.dao.impl;
 
 import java.util.List;
 
@@ -6,15 +6,13 @@ import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import yougetit.data.BlogUser;
-import yougetit.data.Page;
-import yougetit.data.Post;
-import yougetit.service.generic.AbstractDAO;
-import yougetit.service.generic.PostDataAccessService;
+import yougetit.dao.PostDAO;
+import yougetit.entity.BlogUser;
+import yougetit.entity.Page;
+import yougetit.entity.Post;
 
 /**
  * DAO implementation for Post class
@@ -23,15 +21,17 @@ import yougetit.service.generic.PostDataAccessService;
  * @version 1.1
  * @since 	13.08.2016
  */
-@Repository
+@Repository(value = "postingService")
 @Transactional
-@Component(value = "postingService")
-public class PostDAO extends AbstractDAO<Post, Integer> implements PostDataAccessService{
+public class PostDAOimpl extends AbstractDAO<Post, Integer> implements PostDAO{
 	
-	public PostDAO() {
+	public PostDAOimpl() {
 		super(Post.class);
 	}
 
+	/**
+	 * {@inheritDoc}}
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Post> getPostByPageNumber(int pageNumber) {
@@ -44,9 +44,7 @@ public class PostDAO extends AbstractDAO<Post, Integer> implements PostDataAcces
 	}
 	
 	/**
-	 * Loading requested by id post and initializing its lazy fields
-	 * @param id - post's id
-	 * @return
+	 * {@inheritDoc}}
 	 */
 	@Override
 	public Post findById(Integer id) {
@@ -56,10 +54,8 @@ public class PostDAO extends AbstractDAO<Post, Integer> implements PostDataAcces
 	}
 	
 	/**
-	 * Searching by given pattern
-	 * @param pattern - String pattern to search
-	 * @return list of matching posts
-	 */
+     * {@inheritDoc}}
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Post> search(String pattern) {		
@@ -70,10 +66,8 @@ public class PostDAO extends AbstractDAO<Post, Integer> implements PostDataAcces
 	}
 
 	/**
-	 * Searching post by author
-	 * @param author - BlogUser object, post's author
-	 * @return list of post
-	 */
+     * {@inheritDoc}}
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Post> getByAuthor(BlogUser author) {

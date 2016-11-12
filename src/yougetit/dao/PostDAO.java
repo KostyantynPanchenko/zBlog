@@ -1,11 +1,11 @@
-package yougetit.service.generic;
+package yougetit.dao;
 
 import java.util.List;
 
-import yougetit.data.BlogUser;
-import yougetit.data.Post;
+import yougetit.entity.BlogUser;
+import yougetit.entity.Post;
 
-public interface PostDataAccessService extends GenericDAO<Post, Integer> {
+public interface PostDAO extends GenericDAO<Post, Integer> {
 	public abstract List<Post> getPostByPageNumber(int pageNumber);
 	public abstract List<Post> search(String pattern);
 	public abstract List<Post> getByAuthor(BlogUser author);

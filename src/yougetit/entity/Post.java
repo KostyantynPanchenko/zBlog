@@ -1,4 +1,7 @@
-package yougetit.data;
+/*
+ * Simple web application which utilizes Spring MVC, Spring Security and Hibernate. 
+ */
+package yougetit.entity;
 
 import java.util.Date;
 import java.util.List;
@@ -18,7 +21,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 /**
- * Entity class. Represents blog post instance
+ * Entity class, represents blog post instance.
  * 
  * @author 	Kostyantyn Panchenko
  * @version 1.0
@@ -70,7 +73,7 @@ public class Post {
 	}
 		
 	/**
-	 * Field-based constructor
+	 * Field-based constructor.
 	 * @param title - post title
 	 * @param content - post text
 	 * @param author - user
@@ -83,7 +86,7 @@ public class Post {
 	}
 	
 	/**
-	 * Adding new comment to post and establishing bidirectional reference
+	 * Adding new comment to post and establishing bidirectional reference.
 	 * @param comment - comment to be added
 	 * @return - true if successfully, false otherwise
 	 */

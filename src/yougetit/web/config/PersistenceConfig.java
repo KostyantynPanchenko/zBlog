@@ -1,3 +1,6 @@
+/*
+ * Simple web application which utilizes Spring MVC, Spring Security and Hibernate. 
+ */
 package yougetit.web.config;
 
 import java.util.Properties;
@@ -21,10 +24,16 @@ import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import yougetit.data.BlogUser;
-import yougetit.data.Comment;
-import yougetit.data.Post;
+import yougetit.entity.BlogUser;
+import yougetit.entity.Comment;
+import yougetit.entity.Post;
 
+/**
+ * Persistence configuration class.
+ * @author Kostyantyn Panchenko
+ * @version 1.2
+ * @since   09.08.2016
+ */
 @Configuration
 @EnableTransactionManagement
 @PropertySources({
@@ -33,14 +42,22 @@ import yougetit.data.Post;
 @ComponentScan
 public class PersistenceConfig {
 	
+    /**
+     * Instance of environment in which the current application is running.
+     */
 	@Autowired
 	private Environment env;	
 	
+	/**
+	 * Create SessionFactory bean.
+	 * @param dataSource DataSource instance.
+	 * @return SessionFactory bean.
+	 */
 	@Autowired
 	@Bean(name = "sf")	
 	public SessionFactory sessionFactory(DataSource dataSource) {
 		LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource);
-		builder.scanPackages("yougetit.data")
+		builder.scanPackages("yougetit.entity")
 			.addAnnotatedClass(BlogUser.class)
 			.addAnnotatedClass(Comment.class)
 			.addAnnotatedClass(Post.class);
@@ -48,18 +65,27 @@ public class PersistenceConfig {
 		return builder.buildSessionFactory();
 	}
 	
+	/**
+	 * Creates LocalSessionFactoryBean.
+	 * @param dataSource DataSource instance.
+	 * @return LocalSessionFactory bean.
+	 */
 	@Autowired
 	@Bean(name = "sessionFactory")
 	@Scope(BeanDefinition.SCOPE_SINGLETON)
 	public LocalSessionFactoryBean getSessionFactory(DataSource dataSource) {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource);
-		sessionFactory.setPackagesToScan(new String[] {"yougetit.data"});
+		sessionFactory.setPackagesToScan(new String[] {"yougetit.entity"});
 		sessionFactory.setHibernateProperties(getHibernateProperties());
 		
 		return sessionFactory;
 	}
 
+	/**
+	 * Creates DataSource bean.
+	 * @return DataSource bean.
+	 */
 	@Bean(name = "dataSource")
 	public DataSource getDataSource() {
 		BasicDataSource ds = new BasicDataSource();
@@ -70,19 +96,29 @@ public class PersistenceConfig {
 		return ds;
 	}
 
+	/**
+	 * Creates HibernateTransactionManager bean. Binds a Hibernate Session from the specified 
+	 * factory to the thread, potentially allowing for one thread-bound Session per factory.
+	 * @param sessionFactory SessionFactory instance.
+	 * @return HibernateTransactionManager bean.
+	 */
 	@Autowired
 	@Bean	
 	public HibernateTransactionManager txManager(SessionFactory sessionFactory) {
 		return new HibernateTransactionManager(sessionFactory);
 	}
 
+	/**
+	 * Creates PersistenceExceptionTranslationPostProcessor bean.
+	 * @return PersistenceExceptionTranslationPostProcessor bean.
+	 */
 	@Bean
 	public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
 		return new PersistenceExceptionTranslationPostProcessor();
 	}
 
 	/**
-	 * @return Properties instance populated with Hibernate properties
+	 * @return Properties instance populated with Hibernate properties.
 	 */
 	private Properties getHibernateProperties() {
 		Properties prop = new Properties();

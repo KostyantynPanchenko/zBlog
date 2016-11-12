@@ -1,11 +1,14 @@
-package yougetit.data;
+/*
+ * Simple web application which utilizes Spring MVC, Spring Security and Hibernate. 
+ */
+package yougetit.entity;
 
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import yougetit.service.validation.PasswordsMatch;
+import yougetit.validator.PasswordsMatch;
 
 /**
  * User data transfer object class. Used during user registration and

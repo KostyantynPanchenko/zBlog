@@ -1,4 +1,7 @@
-package yougetit.service.implementation;
+/*
+ * Simple web application which utilizes Spring MVC, Spring Security and Hibernate. 
+ */
+package yougetit.dao.impl;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,11 +14,11 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import yougetit.data.BlogUser;
-import yougetit.service.generic.UserDataAccessService;
+import yougetit.dao.UserDAO;
+import yougetit.entity.BlogUser;
 
 /**
  * Custom implementation of UserDetailsService interface.
@@ -24,13 +27,16 @@ import yougetit.service.generic.UserDataAccessService;
  * @version 1.0
  * @since	29.07.2016
  */
-@Component(value = "userDetailsService")
+@Repository(value = "userDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
 	@Qualifier(value = "userService")
-	private UserDataAccessService userService;
+	private UserDAO userService;
 	
+	/**
+	 * {@inheritDoc}}
+	 */
 	@Transactional(readOnly = true)
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

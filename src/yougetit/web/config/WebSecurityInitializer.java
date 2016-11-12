@@ -1,8 +1,12 @@
+/*
+ * Simple web application which utilizes Spring MVC, Spring Security and Hibernate. 
+ */
 package yougetit.web.config;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
 /**
+ * Security initializer class.
  * By extending AbstractSecurityWebApplicationInitializer (which implements 
  * WebApplicationInitializer) we enable this class to be discovered by Spring 
  * and to be used to register DelegatingFilterProxy with the web container.
