@@ -32,9 +32,6 @@ import yougetit.service.generic.UserDataAccessService;
 @Controller
 public class CoreController {
 	
-//	private static int initialCapacity = 4;
-//	private static ConcurrentHashMap<Integer, Page> cache = new ConcurrentHashMap<>(initialCapacity);	
-//	
 	@Autowired
 	private PostDataAccessService postingService;
 	
