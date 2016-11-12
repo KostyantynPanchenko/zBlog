@@ -1,3 +1,6 @@
+/*
+ * Simple web application which utilizes Spring MVC, Spring Security and Hibernate. 
+ */
 package yougetit.web.controller;
 
 import java.util.Date;
@@ -42,8 +45,8 @@ public class CoreController {
 	private CommentDAO commentService;
 	
 	/**
-	 * Handles requests to main page
-	 * @return - Model object
+	 * Handles requests to main page.
+	 * @return - Model object.
 	 */	
 	@GetMapping(value = "/")
 	public ModelAndView showIndex() {
@@ -58,17 +61,11 @@ public class CoreController {
 	@GetMapping(value = "/page{pageNumber}")
 	public ModelAndView showPageByNumber(@PathVariable("pageNumber") int pageNumber ) {
 		Page page = null;
-		
-//		if ((page = cache.get(pageNumber)) != null) {
-//			return new ModelAndView("page", "page", page);
-//		} else {
-			List<Post> posts = postingService.getPostByPageNumber(pageNumber);
-			page = new Page(pageNumber);
-			page.setPosts(posts);
-			setTotalPages(page);			
-//			cache.put(pageNumber, page);			
-			return new ModelAndView("page", "page", page);
-//		}		
+		List<Post> posts = postingService.getPostByPageNumber(pageNumber);
+		page = new Page(pageNumber);
+		page.setPosts(posts);
+		setTotalPages(page);				
+		return new ModelAndView("page", "page", page);
 	}
 	
 	/**
@@ -104,8 +101,8 @@ public class CoreController {
 	}
 	
 	/**
-	 * Processing adding new post
-	 * @return
+	 * Processing adding new post.
+	 * @return ModelAndView instance.
 	 */
 	@PostMapping(value = "/posts/add")
 	public ModelAndView addNewPost(HttpServletRequest request) {
@@ -137,9 +134,9 @@ public class CoreController {
 	}
 	
 	/**
-	 * Displays post by id
-	 * @param id - post id
-	 * @return ModelAndView for displaying given post by id
+	 * Displays post by id.
+	 * @param id - post id.
+	 * @return ModelAndView for displaying given post by id.
 	 */
 	@GetMapping(value = "/posts/{id}")
 	public ModelAndView showPostById(@PathVariable("id") int id) {
@@ -148,9 +145,9 @@ public class CoreController {
 	}
 	
 	/**
-	 * Handles post edition
-	 * @param id - post id
-	 * @return ModelAndView object
+	 * Handles post edition.
+	 * @param id - post id.
+	 * @return ModelAndView object.
 	 */
 	@GetMapping(value = "/posts/{id}/edit")
 	public ModelAndView showEdit(@PathVariable("id") int id) {
@@ -159,9 +156,9 @@ public class CoreController {
 	}
 
 	/**
-	 * Handles post editing
-	 * @param id - post id
-	 * @return ModelAndView object
+	 * Handles post editing.
+	 * @param id - post id.
+	 * @return ModelAndView object.
 	 */
 	@PostMapping(value = "/posts/{id}/edit")
 	public String doEdit(@PathVariable("id") int id, HttpServletRequest request) {
@@ -178,10 +175,10 @@ public class CoreController {
 	}
 	
 	/**
-	 * Adding a new comment to a post
-	 * @param id - post id
-	 * @param request - HttpServletRequest
-	 * @return page with added post
+	 * Adding a new comment to a post.
+	 * @param id - post id.
+	 * @param request - HttpServletRequest.
+	 * @return page with added post.
 	 */
 	@PostMapping(value = "/posts/{id}/comment")
 	public ModelAndView addComment(@PathVariable("id") int id, HttpServletRequest request) {
@@ -211,9 +208,9 @@ public class CoreController {
 	}
 	
 	/**
-	 * Deletes post with given id
-	 * @param id - post id
-	 * @return
+	 * Handles request to delete post with given id.
+	 * @param id - post id.
+	 * @return.
 	 */
 	@PostMapping(value = "/posts/{id}/delete")
 	public String deletePost(@PathVariable("id") int id) {
@@ -221,9 +218,9 @@ public class CoreController {
 	}
 	
 	/**
-	 * Shows user profile
-	 * @param login - user
-	 * @return user profile page
+	 * Handles request to show user profile.
+	 * @param login - user.
+	 * @return user profile page.
 	 */
 	@GetMapping(value = "/profile/{user}")
 	public ModelAndView showProfile(@PathVariable("user") String login) {
@@ -233,9 +230,9 @@ public class CoreController {
 	}
 	
 	/**
-	 * Handles search request
-	 * @param request - HttpServletRequest object
-	 * @return list of results (Post objects)
+	 * Handles search request.
+	 * @param request - HttpServletRequest object.
+	 * @return list of results (Post objects).
 	 */
 	@PostMapping(value = {"/search", "/posts/search"})
 	public ModelAndView search(HttpServletRequest request) {
@@ -248,6 +245,11 @@ public class CoreController {
 		}		
 	}
 	
+	/**
+	 * Handles searching request.
+	 * @param model Model instance.
+	 * @return logical view name.
+	 */
 	@GetMapping(value = "/search")
 	public String showSearchResults(Model model) {			
 		return "search";

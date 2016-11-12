@@ -21,12 +21,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
-import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
-import yougetit.entity.BlogUser;
-import yougetit.entity.Comment;
-import yougetit.entity.Post;
 
 /**
  * Persistence configuration class.
@@ -47,23 +42,6 @@ public class PersistenceConfig {
      */
 	@Autowired
 	private Environment env;	
-	
-	/**
-	 * Create SessionFactory bean.
-	 * @param dataSource DataSource instance.
-	 * @return SessionFactory bean.
-	 */
-	@Autowired
-	@Bean(name = "sf")	
-	public SessionFactory sessionFactory(DataSource dataSource) {
-		LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource);
-		builder.scanPackages("yougetit.entity")
-			.addAnnotatedClass(BlogUser.class)
-			.addAnnotatedClass(Comment.class)
-			.addAnnotatedClass(Post.class);
-		
-		return builder.buildSessionFactory();
-	}
 	
 	/**
 	 * Creates LocalSessionFactoryBean.

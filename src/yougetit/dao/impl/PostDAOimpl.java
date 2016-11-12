@@ -1,3 +1,6 @@
+/*
+ * Simple web application which utilizes Spring MVC, Spring Security and Hibernate. 
+ */
 package yougetit.dao.impl;
 
 import java.util.List;
@@ -25,6 +28,9 @@ import yougetit.entity.Post;
 @Transactional
 public class PostDAOimpl extends AbstractDAO<Post, Integer> implements PostDAO{
 	
+    /**
+     * Default constructor.
+     */
 	public PostDAOimpl() {
 		super(Post.class);
 	}

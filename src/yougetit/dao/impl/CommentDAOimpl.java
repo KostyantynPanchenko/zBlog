@@ -1,3 +1,6 @@
+/*
+ * Simple web application which utilizes Spring MVC, Spring Security and Hibernate. 
+ */
 package yougetit.dao.impl;
 
 import java.util.List;
@@ -23,14 +26,15 @@ import yougetit.entity.Comment;
 @Component(value = "commentService")
 public class CommentDAOimpl extends AbstractDAO<Comment, Integer> implements CommentDAO {
 
+    /**
+     * Default constructor.
+     */
 	public CommentDAOimpl() {
 		super(Comment.class);
 	}
 
 	/**
-	 * Searching by given author
-	 * @param author - BlogUser object representing comment author
-	 * @return list of matching comments
+	 * {@inheritDoc}	
 	 */
 	@SuppressWarnings("unchecked")
 	@Override

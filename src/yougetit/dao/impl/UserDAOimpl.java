@@ -1,3 +1,6 @@
+/*
+ * Simple web application which utilizes Spring MVC, Spring Security and Hibernate. 
+ */
 package yougetit.dao.impl;
 
 import java.util.ArrayList;
@@ -28,11 +31,18 @@ public class UserDAOimpl extends AbstractDAO<BlogUser, Integer> implements UserD
 	@Qualifier("sessionFactory")
 	private SessionFactory sf;
 	
+	/**
+	 * Default constructor.
+	 */
 	public UserDAOimpl() {
 		super(BlogUser.class);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public BlogUser getUser(String login) {
 		List<BlogUser> users = new ArrayList<BlogUser>();
 		
@@ -47,6 +57,9 @@ public class UserDAOimpl extends AbstractDAO<BlogUser, Integer> implements UserD
 		}
 	}
 
+	/**
+	 * {@inheritDoc}}
+	 */
 	@Override
 	public void addPost(int userId, Post post) {
 		BlogUser user = findById(userId);

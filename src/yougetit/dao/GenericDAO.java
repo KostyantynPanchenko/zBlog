@@ -1,3 +1,6 @@
+/*
+ * Simple web application which utilizes Spring MVC, Spring Security and Hibernate. 
+ */
 package yougetit.dao;
 
 import java.util.List;
@@ -13,10 +16,43 @@ import java.util.List;
  * @param <ID> - id class
  */
 public interface GenericDAO<T, ID> {
-	T findById(ID id);	
-	List<T> findAll();
-	int getCount();
-	ID save(T entity);
-	T update(T entity);
-	void delete(T entity);
+	
+    /**
+     * Finds entity by given id.
+     * @param id given id.
+     * @return entity with given id.
+     */
+    public abstract T findById(ID id);
+    
+    /**
+     * Finds all entities.
+     * @return list of entities.
+     */
+	public abstract List<T> findAll();
+	
+	/**
+	 * Counts all records.
+	 * @return number of records.
+	 */
+	public abstract int getCount();
+	
+	/**
+	 * Persists given entity.
+	 * @param entity given entity.
+	 * @return generated id.
+	 */
+	public abstract ID save(T entity);
+	
+	/**
+	 * Updates given entity.
+	 * @param entity given entity.
+	 * @return updated entity.
+	 */
+	public abstract T update(T entity);
+	
+	/**
+	 * Deletes given entity.
+	 * @param entity given entity.
+	 */
+	public abstract void delete(T entity);
 }
