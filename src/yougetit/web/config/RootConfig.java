@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Configuration;
  * @since 29.07.2016
  */
 @Configuration
-@ComponentScan
+@ComponentScan(basePackages = {"yougetit.service"})
 public class RootConfig {
 	
 }

@@ -1,3 +1,6 @@
+/*
+ * Simple web application which utilizes Spring MVC, Spring Security and Hibernate. 
+ */
 package yougetit.web.controller;
 
 import org.springframework.stereotype.Controller;
@@ -15,6 +18,12 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class LoginController {
 	
+    /**
+     * Handles requests to login page.
+     * @param error error message.
+     * @param logout logout message.
+     * @return ModelAndView instance.
+     */
 	@RequestMapping(value = "/login")
 	public ModelAndView login(
 			@RequestParam(value = "error", required = false) String error,

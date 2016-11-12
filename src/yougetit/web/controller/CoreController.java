@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import yougetit.dao.CommentDAO;
-import yougetit.dao.PostDAO;
-import yougetit.dao.UserDAO;
 import yougetit.entity.BlogUser;
 import yougetit.entity.Comment;
 import yougetit.entity.Page;
 import yougetit.entity.Post;
+import yougetit.service.CommentService;
+import yougetit.service.PostService;
+import yougetit.service.UserService;
 
 /**
  * This class handles requests addressed to main page.
@@ -36,13 +36,13 @@ import yougetit.entity.Post;
 public class CoreController {
 	
 	@Autowired
-	private PostDAO postingService;
+	private PostService postingService;
 	
 	@Autowired
-	private UserDAO userService;
+	private UserService userService;
 	
 	@Autowired
-	private CommentDAO commentService;
+	private CommentService commentService;
 	
 	/**
 	 * Handles requests to main page.

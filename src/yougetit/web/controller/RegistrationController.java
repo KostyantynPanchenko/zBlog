@@ -1,3 +1,6 @@
+/*
+ * Simple web application which utilizes Spring MVC, Spring Security and Hibernate. 
+ */
 package yougetit.web.controller;
 
 import java.security.MessageDigest;
@@ -14,17 +17,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import yougetit.dao.UserDAO;
 import yougetit.entity.BlogUser;
 import yougetit.entity.UserDTO;
 import yougetit.exceptions.EmailExistException;
 import yougetit.exceptions.UserExistsException;
+import yougetit.service.UserService;
 
+/**
+ * Controller which handles registration requests.
+ * 
+ * @author  Kostyantyn Panchenko
+ * @version 1.0
+ * @since   29.07.2016
+ */
 @Controller
 public class RegistrationController {
 
 	@Autowired
-	private UserDAO userService;
+	private UserService userService;
 	
 	/**
 	 * Processing access to registration page 

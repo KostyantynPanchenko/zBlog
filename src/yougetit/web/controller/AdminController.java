@@ -1,3 +1,6 @@
+/*
+ * Simple web application which utilizes Spring MVC, Spring Security and Hibernate. 
+ */
 package yougetit.web.controller;
 
 import java.util.List;
@@ -10,12 +13,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import yougetit.dao.CommentDAO;
-import yougetit.dao.PostDAO;
-import yougetit.dao.UserDAO;
 import yougetit.entity.BlogUser;
 import yougetit.entity.Comment;
 import yougetit.entity.Post;
+import yougetit.service.CommentService;
+import yougetit.service.PostService;
+import yougetit.service.UserService;
 
 /**
  * This class handles requests addressed to administration page.
@@ -28,13 +31,13 @@ import yougetit.entity.Post;
 public class AdminController {
 
 	@Autowired
-	private UserDAO userService;
+	private UserService userService;
 	
 	@Autowired
-	private PostDAO postingService;
+	private PostService postingService;
 	
 	@Autowired
-	private CommentDAO commentService;
+	private CommentService commentService;
 	
 	@GetMapping(value = "/admin")
 	public ModelAndView adminPageGet() {
@@ -149,14 +152,21 @@ public class AdminController {
 		return model;
 	}
 	
-	
-
+	/**
+	 * Handles request to find all users.
+	 * @return logical view name.
+	 */
 	@GetMapping(value = "/admin/users")
 	public String allUSers() {
 		System.out.println("Get - displaying all users");
 		return "admin";
 	}
 	
+	/**
+	 * Handles request to find users.
+	 * @param request HttpServletRequest instance.
+	 * @return logical view name.
+	 */
 	@PostMapping(value = "/admin/users")
 	public String byId(HttpServletRequest request) {
 		System.out.println("USERS");
@@ -176,6 +186,11 @@ public class AdminController {
 		return "admin";
 	}
 	
+	/**
+	 * Handles request to show all posts.
+	 * @param request HttpServletRequest instance.
+	 * @return ModelAndView instance.
+	 */
 	@PostMapping(value = "/admin/posts")
 	public ModelAndView showAllPosts(HttpServletRequest request) {
 		System.out.println("POSTS");
@@ -183,6 +198,11 @@ public class AdminController {
 		return model;
 	}
 	
+	/**
+	 * Handles request to show all comments.
+	 * @param request HttpServletRequest instance.
+	 * @return ModelaAndView instance
+	 */
 	@PostMapping(value = "/admin/comments")
 	public ModelAndView showAllComments(HttpServletRequest request) {
 		System.out.println("COMMENTS");
